@@ -23,6 +23,10 @@ get '/user/:user' do
     erb :user
 end
 
+get '/gid' do
+  erb :default, :locals => {:analyzer => "commitsPerCommitterPerWeek"}
+end
+
 get '/data/:analyzer' do
     content_type :json
     db[params[:analyzer]].find.to_a.to_json

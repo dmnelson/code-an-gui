@@ -25,13 +25,17 @@
     height: 300px;
 }
 
+.wide_box {
+    width: 95%;
+    height: 500px;
+}
+
 h3 {
     margin: 0;
     text-align: center;
 }
 #visualizers {
     text-align: center;
-    width: 920 px;
     margin: 0 auto;
 }
 body {
