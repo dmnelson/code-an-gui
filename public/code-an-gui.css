@@ -2,14 +2,15 @@
     background-color: #fffff7;
     box-shadow: 3px 3px 30px #eeeeee;
     margin: 1px;
+    padding: 20px 0;
     float: left;
 }
 .box_1_1 {
-    width: 299px;
+    width: 24%;
     height: 300px;
 }
 .box_1_2 {
-    width: 299px;
+    width: 24%;
     height: 600px;
 }
 .box_2_1 {
@@ -21,12 +22,12 @@
     height: 600px;
 }
 .box_3_1 {
-    width: 900px;
+    width: 74%;
     height: 300px;
 }
 
 .wide_box {
-    width: 95%;
+    width: 99%;
     height: 500px;
 }
 
@@ -56,6 +57,7 @@ body {
 }
 .bar {
     fill: steelblue;
+    color:white;
 }
 .x.axis path {
     display: none;
