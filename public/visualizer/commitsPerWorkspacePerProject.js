@@ -5,7 +5,8 @@ define(function() {
 
             tile.title("Workspaces Contributions");
 
-            data = data.filter(function(e) {return e.project == project; }).slice(0,10);
+
+            data = data.filter(function(e) {return e.project == project; }).slice(0,15);
 
             var margin = {top: 10, right: 10, bottom: 25, left: 40},
                 width = tile.width() - margin.left - margin.right,
@@ -35,12 +36,36 @@ define(function() {
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-            data.forEach(function(d) {
-                d.checkins = +d.checkins;
-            });
-
             x.domain(data.map(function(d) { return d.workspace; }));
             y.domain([0, d3.max(data, function(d) { return d.checkins; })]);
+
+            svg.selectAll(".bar")
+            .data(data)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x(d.workspace); })
+            .attr("width", x.rangeBand())
+            .attr("y", function(d) { return y(d.checkins); })
+            .attr("height", function(d) { return height - y(d.checkins); });
+
+             svg.selectAll("text")
+              .data(data)
+            .enter()
+              .append("text")
+              .text(function(d) {
+                return d.checkins;
+              })
+              .attr("text-anchor", "middle")
+              .attr("x", function(d, i) {
+                return  x(d.workspace) + x.rangeBand() / 2;
+              })
+              .attr("y", function(d) {
+                return y(d.checkins) + 11 + (d.checkins/10);
+              })
+              .attr("font-family", "sans-serif")
+              .attr("font-size", "11px")
+              .attr("fill", "white");
+
 
             svg.append("g")
               .attr("class", "x axis")
@@ -57,14 +82,6 @@ define(function() {
               .style("text-anchor", "end")
               .text("Checkins");
 
-            svg.selectAll(".bar")
-              .data(data)
-            .enter().append("rect")
-              .attr("class", "bar")
-              .attr("x", function(d) { return x(d.workspace); })
-              .attr("width", x.rangeBand())
-              .attr("y", function(d) { return y(d.checkins); })
-              .attr("height", function(d) { return height - y(d.checkins); });
 
 
 
